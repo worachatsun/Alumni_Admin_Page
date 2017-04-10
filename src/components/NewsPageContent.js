@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import "froala-editor/js/froala_editor.pkgd.min.js"
+import "froala-editor/css/froala_editor.pkgd.min.css"
+import 'font-awesome/css/font-awesome.css'
+import FroalaEditor from 'react-froala-wysiwyg'
 
 class NewsPageContent extends Component {
     render() {
@@ -66,10 +70,7 @@ class NewsPageContent extends Component {
                                         <label>News Detail</label>
                                         <div className="clearfix"></div>
                                     </div>
-                                        <div id="editor">
-                                            <div id='edit' style={{marginTop: 30}}>       
-                                            </div>
-                                        </div>
+                                        <FroalaEditor tag='textarea'/>
                                         <br></br>
                                     <div className="form-group">
                                         <div className="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
