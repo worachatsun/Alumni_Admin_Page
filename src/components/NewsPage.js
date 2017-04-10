@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import SideNavBar from './SideNavBar'
+import TopNavBar from './TopNavBar'
+import NewsPageContent from './NewsPageContent'
 
 class NewsPage extends Component {
 
@@ -8,6 +10,8 @@ class NewsPage extends Component {
             <div className="container body">
                 <div className="main_container">
                     <SideNavBar />
+                    <TopNavBar />
+                    <NewsPageContent />
                 </div>
             </div>
         )

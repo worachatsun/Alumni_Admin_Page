@@ -6,7 +6,7 @@ import './vendors/font-awesome/css/font-awesome.min.css'
 import './styles/css/Froala-edit/froala_editor.css'
 import './styles/css/custom.min.css'
 import './vendors/bootstrap/dist/js/bootstrap.min.js'
-import './styles/js/custom.min.js'
+import './styles/js/custom.js'
 
 ReactDOM.render(
     <App />,
