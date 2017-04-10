@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 import "froala-editor/js/froala_editor.pkgd.min.js"
 import "froala-editor/css/froala_editor.pkgd.min.css"
+import "froala-editor/css/froala_style.min.css"
 import 'font-awesome/css/font-awesome.css'
 import FroalaEditor from 'react-froala-wysiwyg'
 class NewsPageContent extends Component {
@@ -12,13 +14,19 @@ class NewsPageContent extends Component {
             news_title: '',
             news_text: '',
             picture: '',
-            category: '',
-            news_role: ''
+            category: 'ทั้งหมด',
+            news_role: 'Alumni news'
         }
+
+        this.onSubmitNews = this.onSubmitNews.bind(this)
+    }
+
+    onSubmitNews(event) {
+        event.preventDefault()
+        this.props.createNews(this.state)
     }
 
     render() {
-        console.log(this.state)
         return (
             <div className="right_col" role="main">
                 <div className="">
@@ -28,7 +36,6 @@ class NewsPageContent extends Component {
                         </div>
                     </div>
                     <div className="clearfix"></div>
-
                     <div className="row">
                         <div className="col-md-12 col-sm-12 col-xs-12">
                             <div className="x_panel">
@@ -36,7 +43,7 @@ class NewsPageContent extends Component {
                                     <h3>Add News</h3>
                                     <div className="clearfix"></div>
                                 </div>
-                                <form className="form-horizontal form-label-left">
+                                <form onSubmit={this.onSubmitNews} className="form-horizontal form-label-left">
                                     <div className="form-group">
                                         <label className="control-label col-md-3 col-sm-3 col-xs-12">News Cover Image <span className="required">*</span></label>
                                         <div className="col-md-9 col-sm-9 col-xs-12">
@@ -84,7 +91,6 @@ class NewsPageContent extends Component {
                                             <button type="submit" className="btn btn-success">Submit</button>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -96,4 +102,4 @@ class NewsPageContent extends Component {
     }
 }
 
-export default NewsPageContent
+export default connect(null, actions)(NewsPageContent)
