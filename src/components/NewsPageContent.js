@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
+
 import "froala-editor/js/froala_editor.pkgd.min.js"
 import "froala-editor/css/froala_editor.pkgd.min.css"
 import 'font-awesome/css/font-awesome.css'
 import FroalaEditor from 'react-froala-wysiwyg'
-
 class NewsPageContent extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            news_title: '',
+            news_text: '',
+            picture: '',
+            category: '',
+            news_role: ''
+        }
+    }
+
     render() {
+        console.log(this.state)
         return (
             <div className="right_col" role="main">
                 <div className="">
@@ -33,13 +46,13 @@ class NewsPageContent extends Component {
                                     <div className="form-group">
                                         <label className="control-label col-md-3 col-sm-3 col-xs-12">News Title <span className="required">*</span></label>
                                         <div className="col-md-9 col-sm-9 col-xs-12">
-                                            <input type="text" className="form-control" id="news_title" placeholder="Title" required="required"/>
+                                            <input type="text" value={this.state.news_title} onChange={(text) => this.setState({news_title: text.target.value})} className="form-control" id="news_title" placeholder="Title" required="required"/>
                                         </div>
                                     </div>
                                     <div className="form-group">
                                         <label className="control-label col-md-3 col-sm-3 col-xs-12">Select Category News</label>
                                         <div className="col-md-9 col-sm-9 col-xs-12">
-                                            <select className="form-control" id="news_category">
+                                            <select value={this.state.news_role} onChange={(text) => this.setState({news_role: text.target.value})} className="form-control" id="news_category">
                                                     <option>Alumni news</option>
                                                     <option>KMUTT news</option>
                                                     <option>Faculty news</option>
@@ -50,19 +63,9 @@ class NewsPageContent extends Component {
                                     <div className="form-group">
                                         <label className="control-label col-md-3 col-sm-3 col-xs-12">Select Faculty</label>
                                         <div className="col-md-9 col-sm-9 col-xs-12">
-                                            <select className="form-control" id="news_role">
+                                            <select value={this.state.category} onChange={(text) => this.setState({category: text.target.value})} className="form-control" id="news_role">
                                                     <option>ทั้งหมด</option>
-                                                    <option>คณะวิศวกรรมศาสตร์</option>
-                                                    <option>คณะพลังงานและวัสดุ</option>
-                                                    <option>คณะวิทยาศาสตร์</option>
-                                                    <option>คณะครุศาสตร์อุตสาหกรรม</option>
-                                                    <option>คณะทรัพยากรชีวภาพและเทคโนโลยี</option>
-                                                    <option>คณะเทคโนโลยีสารสนเทศ</option>
-                                                    <option>คณะสถาปัตยกรรมศาสตร์</option>
-                                                    <option>คณะศิลปศาสตร์</option>
-                                                    <option>บัณฑิตร่วมด้านพลังงานและสิ่งแวดล้อม</option>
-                                                    <option>บัณฑิตวิทยาลัยการจัดการและนวัตกรรม</option>
-                                                    <option>คณะสถาบันวิทยาการหุ่นยนต์ภาคสนาม (วทม.)</option>
+                                                    <option>SIT</option>
                                                 </select>
                                         </div>
                                     </div>
@@ -70,7 +73,9 @@ class NewsPageContent extends Component {
                                         <label>News Detail</label>
                                         <div className="clearfix"></div>
                                     </div>
-                                        <FroalaEditor tag='textarea'/>
+                                    <div className="editor">
+                                        <FroalaEditor model={this.state.news_text} onModelChange={(text) => this.setState({news_text: text})} tag='textarea'/>
+                                    </div>
                                         <br></br>
                                     <div className="form-group">
                                         <div className="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
